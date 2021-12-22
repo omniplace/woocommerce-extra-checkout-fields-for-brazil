@@ -561,14 +561,26 @@ class Extra_Checkout_Fields_For_Brazil_Front_End {
 	public function order_address( $address, $type, $order ) {
 		$number       = $type . '_number';
 		$neighborhood = $type . '_neighborhood';
+		$cpf = $type . '_cpf';
+		$cnpj = $type . '_cnpj';
+		$persontype = $type . '_persontype';
+		$cellphone = $type . '_cellphone';
 
 		// WooCommerce 3.0 or later.
 		if ( method_exists( $order, 'get_meta' ) ) {
 			$address['number']       = $order->get_meta( '_' . $number );
 			$address['neighborhood'] = $order->get_meta( '_' . $neighborhood );
+			$address['cpf'] = $order->get_meta( '_' . $cpf );
+			$address['cnpj'] = $order->get_meta( '_' . $cnpj );
+			$address['persontype'] = $order->get_meta( '_' . $persontype );
+			$address['cellphone'] = $order->get_meta( '_' . $cellphone );
 		} else {
 			$address['number']       = $order->$number;
 			$address['neighborhood'] = $order->$neighborhood;
+			$address['cpf'] = $order->$cpf;
+			$address['cnpj'] = $order->$cnpj;
+			$address['persontype'] = $order->$persontype;
+			$address['cellphone'] = $order->$cellphone;
 		}
 
 		return $address;
